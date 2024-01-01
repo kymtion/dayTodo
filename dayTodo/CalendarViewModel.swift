@@ -7,6 +7,7 @@ import FSCalendar
 class CalendarViewModel: ObservableObject {
     @Published var selectedDate = Date()
     @Published var memos: [MemoData] = []
+    @Published var dataChanged = false
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -18,12 +19,42 @@ class CalendarViewModel: ObservableObject {
         loadMemos()
     }
     
+    func hasEvent(on date: Date) -> Bool {
+        let hasEvent = memos.contains { memo in
+            Calendar.current.isDate(memo.date, inSameDayAs: date)
+        }
+        return hasEvent
+    }
+    
+    func saveMemo(title: String, content: String, id: UUID? = nil) {
+        if let id = id {
+            // 기존 메모 업데이트 또는 새 메모 추가
+            if let index = memos.firstIndex(where: { $0.id == id }) {
+                memos[index] = MemoData(id: id, title: title, content: content, date: selectedDate)
+            } else {
+                memos.append(MemoData(title: title, content: content, date: selectedDate))
+            }
+            saveAllMemos()
+        } else {
+            // 새 메모 추가
+            memos.append(MemoData(title: title, content: content, date: selectedDate))
+            saveAllMemos()
+        }
+        self.dataChanged = true
+    }
+    
     func deleteMemo(id: UUID) {
         if let index = memos.firstIndex(where: { $0.id == id }) {
             memos.remove(at: index)
             saveAllMemos()
         }
+        self.dataChanged = true
     }
+    
+    func acknowledgeDataChange() {
+           self.dataChanged = false
+       }
+   
     
     
     private func saveAllMemos() {
@@ -44,19 +75,5 @@ class CalendarViewModel: ObservableObject {
         }
     }
     
-    func saveMemo(title: String, content: String, id: UUID? = nil) {
-        if let id = id {
-            // 기존 메모 업데이트 또는 새 메모 추가
-            if let index = memos.firstIndex(where: { $0.id == id }) {
-                memos[index] = MemoData(id: id, title: title, content: content, date: selectedDate)
-            } else {
-                memos.append(MemoData(title: title, content: content, date: selectedDate))
-            }
-            saveAllMemos()
-        } else {
-            // 새 메모 추가
-            memos.append(MemoData(title: title, content: content, date: selectedDate))
-            saveAllMemos()
-        }
-    }
+  
 }
