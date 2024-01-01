@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E382B3D608100A68E77 /* TabBarView.swift */; };
+		A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3A2B3D60A700A68E77 /* HomeView.swift */; };
+		A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */; };
+		A89C6E3F2B3D661700A68E77 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3E2B3D661700A68E77 /* CalendarViewModel.swift */; };
+		A89C6E422B3DCCA500A68E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A89C6E412B3DCCA500A68E77 /* FSCalendar */; };
+		A89C6E442B3EDA3500A68E77 /* TodolistView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E432B3EDA3500A68E77 /* TodolistView2.swift */; };
+		A89C6E482B40043300A68E77 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E472B40043300A68E77 /* WriteView.swift */; };
+		A89C6E4A2B40079D00A68E77 /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E492B40079D00A68E77 /* MemoData.swift */; };
 		A8CC93B32B3D56AF006F2135 /* dayTodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CC93B22B3D56AF006F2135 /* dayTodoApp.swift */; };
-		A8CC93B52B3D56AF006F2135 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CC93B42B3D56AF006F2135 /* ContentView.swift */; };
 		A8CC93B72B3D56B0006F2135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CC93B62B3D56B0006F2135 /* Assets.xcassets */; };
 		A8CC93BB2B3D56B0006F2135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CC93BA2B3D56B0006F2135 /* Preview Assets.xcassets */; };
 		A8CC93C52B3D56B0006F2135 /* dayTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CC93C42B3D56B0006F2135 /* dayTodoTests.swift */; };
@@ -34,9 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A89C6E382B3D608100A68E77 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		A89C6E3A2B3D60A700A68E77 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A89C6E3E2B3D661700A68E77 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		A89C6E432B3EDA3500A68E77 /* TodolistView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodolistView2.swift; sourceTree = "<group>"; };
+		A89C6E472B40043300A68E77 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
+		A89C6E492B40079D00A68E77 /* MemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoData.swift; sourceTree = "<group>"; };
 		A8CC93AF2B3D56AF006F2135 /* dayTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CC93B22B3D56AF006F2135 /* dayTodoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dayTodoApp.swift; sourceTree = "<group>"; };
-		A8CC93B42B3D56AF006F2135 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A8CC93B62B3D56B0006F2135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8CC93B82B3D56B0006F2135 /* dayTodo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dayTodo.entitlements; sourceTree = "<group>"; };
 		A8CC93BA2B3D56B0006F2135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89C6E422B3DCCA500A68E77 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +110,13 @@
 			isa = PBXGroup;
 			children = (
 				A8CC93B22B3D56AF006F2135 /* dayTodoApp.swift */,
-				A8CC93B42B3D56AF006F2135 /* ContentView.swift */,
+				A89C6E382B3D608100A68E77 /* TabBarView.swift */,
+				A89C6E3E2B3D661700A68E77 /* CalendarViewModel.swift */,
+				A89C6E3A2B3D60A700A68E77 /* HomeView.swift */,
+				A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */,
+				A89C6E432B3EDA3500A68E77 /* TodolistView2.swift */,
+				A89C6E472B40043300A68E77 /* WriteView.swift */,
+				A89C6E492B40079D00A68E77 /* MemoData.swift */,
 				A8CC93B62B3D56B0006F2135 /* Assets.xcassets */,
 				A8CC93B82B3D56B0006F2135 /* dayTodo.entitlements */,
 				A8CC93B92B3D56B0006F2135 /* Preview Content */,
@@ -145,6 +165,9 @@
 			dependencies = (
 			);
 			name = dayTodo;
+			packageProductDependencies = (
+				A89C6E412B3DCCA500A68E77 /* FSCalendar */,
+			);
 			productName = dayTodo;
 			productReference = A8CC93AF2B3D56AF006F2135 /* dayTodo.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +240,9 @@
 				Base,
 			);
 			mainGroup = A8CC93A62B3D56AF006F2135;
+			packageReferences = (
+				A89C6E402B3DCCA500A68E77 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = A8CC93B02B3D56AF006F2135 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,7 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8CC93B52B3D56AF006F2135 /* ContentView.swift in Sources */,
+				A89C6E482B40043300A68E77 /* WriteView.swift in Sources */,
+				A89C6E442B3EDA3500A68E77 /* TodolistView2.swift in Sources */,
+				A89C6E3F2B3D661700A68E77 /* CalendarViewModel.swift in Sources */,
+				A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */,
+				A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */,
+				A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */,
+				A89C6E4A2B40079D00A68E77 /* MemoData.swift in Sources */,
 				A8CC93B32B3D56AF006F2135 /* dayTodoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +649,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A89C6E402B3DCCA500A68E77 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A89C6E412B3DCCA500A68E77 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A89C6E402B3DCCA500A68E77 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A8CC93A72B3D56AF006F2135 /* Project object */;
 }
