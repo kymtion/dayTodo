@@ -6,4 +6,5 @@ struct MemoData: Codable, Hashable, Identifiable {
     var title: String
     var content: String
     var date: Date
+    var isCompleted: Bool = false
 }

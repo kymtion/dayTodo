@@ -19,6 +19,18 @@ class CalendarViewModel: ObservableObject {
         loadMemos()
     }
     
+    func moveMemo(from source: IndexSet, to destination: Int) {
+            memos.move(fromOffsets: source, toOffset: destination)
+            saveAllMemos()
+        }
+    
+    func toggleMemoCompletion(_ memo: MemoData) {
+            if let index = memos.firstIndex(where: { $0.id == memo.id }) {
+                memos[index].isCompleted.toggle()
+                saveAllMemos()
+            }
+        }
+    
     func hasEvent(on date: Date) -> Bool {
         let hasEvent = memos.contains { memo in
             Calendar.current.isDate(memo.date, inSameDayAs: date)
