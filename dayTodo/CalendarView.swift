@@ -20,6 +20,9 @@ struct CalendarView: View {
             TodolistView2(viewModel: viewModel)
             
         }
+        .onAppear {
+            viewModel.loadMemos()
+        }
         .padding(10)
     }
 }

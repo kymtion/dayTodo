@@ -5,24 +5,76 @@ struct HomeView: View {
     @EnvironmentObject var viewModel: CalendarViewModel
     @State private var showingWriteView = false
     @State private var selectedMemo: MemoData?
+    @State private var isEditing = false
     
     var body: some View {
-        List {
-            Section(header: Text("오늘")) {
-                ForEach(memosForSpecificDay(Date())) { memo in
-                    memoRow(memo)
+        
+        VStack {
+            HStack {
+                if isEditing {
+                    Button("완료") {
+                        isEditing = false
+                    }
+                } else {
+                    Button("편집") {
+                        isEditing = true
+                    }
+                }
+                
+                Spacer()
+                
+                // 홈뷰는 선택된 날짜가 없기때문에 기본값이 현재날짜로 되어 저장됨
+                Button {
+                    showingWriteView = true
+                    selectedMemo = nil
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.system(size: 20))
+                        .foregroundColor(.orange)
                 }
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 15)
             
-            Section(header: Text("내일")) {
-                ForEach(memosForSpecificDay(Calendar.current.date(byAdding: .day, value: 1, to: Date())!)) { memo in
-                    memoRow(memo)
+            if hasFutureMemos() {
+                List {
+                    Section(header: Text("today")
+                        .font(.system(size: 23, weight: .bold))
+                        .foregroundColor(.black)
+                    
+                    ) {
+                        ForEach(viewModel.memos, id: \.id) { memo in
+                            if Calendar.current.isDate(memo.date, inSameDayAs: Date()) {
+                                memoRow(memo)
+                            }
+                        }
+                        .onMove(perform: viewModel.moveMemo)
+                    }
+                    
+                    
+                    Section(header: Text("tomorrow")) {
+                        ForEach(viewModel.memos, id: \.id) { memo in
+                            if Calendar.current.isDate(memo.date, inSameDayAs: Calendar.current.date(byAdding: .day, value: 1, to: Date())!) {
+                                memoRow(memo)
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("2 days later ~")) {
+                        ForEach(viewModel.memos, id: \.id) { memo in
+                            if memo.date >= Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: 2, to: Date())!) {
+                                memoRow(memo)
+                            }
+                        }
+                    }
                 }
-            }
-            Section(header: Text("2일 뒤 이후")) {
-                ForEach(memosFromDayOnwards(Calendar.current.date(byAdding: .day, value: 2, to: Date())!)) { memo in
-                    memoRow(memo)
-                }
+                .environment(\.editMode, .constant(isEditing ? .active : .inactive))
+            } else {
+                Spacer ()
+                Text("새로운 일정을 추가해 보세요!")
+                    .foregroundColor(.gray)
+                    .font(.system(size: 16, weight: .regular))
+                Spacer ()
             }
         }
         .sheet(isPresented: $showingWriteView) {
@@ -34,7 +86,14 @@ struct HomeView: View {
         }
         .onAppear {
             viewModel.loadMemos()
+            
         }
+        .background(Color(UIColor.systemGray6))
+    }
+    
+    private func hasFutureMemos() -> Bool {
+        let today = Calendar.current.startOfDay(for: Date())
+        return viewModel.memos.contains(where: { $0.date >= today })
     }
     
     private func memosForSpecificDay(_ date: Date) -> [MemoData] {
