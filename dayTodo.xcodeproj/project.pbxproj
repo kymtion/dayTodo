@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A878DB5F2B4548FB00423B32 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */; };
 		A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E382B3D608100A68E77 /* TabBarView.swift */; };
 		A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3A2B3D60A700A68E77 /* HomeView.swift */; };
 		A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		A89C6E382B3D608100A68E77 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		A89C6E3A2B3D60A700A68E77 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				A89C6E432B3EDA3500A68E77 /* TodolistView2.swift */,
 				A89C6E472B40043300A68E77 /* WriteView.swift */,
 				A89C6E492B40079D00A68E77 /* MemoData.swift */,
+				A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */,
 				A8CC93B62B3D56B0006F2135 /* Assets.xcassets */,
 				A8CC93B82B3D56B0006F2135 /* dayTodo.entitlements */,
 				A8CC93B92B3D56B0006F2135 /* Preview Content */,
@@ -288,6 +291,7 @@
 				A89C6E482B40043300A68E77 /* WriteView.swift in Sources */,
 				A89C6E442B3EDA3500A68E77 /* TodolistView2.swift in Sources */,
 				A89C6E3F2B3D661700A68E77 /* CalendarViewModel.swift in Sources */,
+				A878DB5F2B4548FB00423B32 /* CustomTextEditor.swift in Sources */,
 				A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */,
 				A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */,
 				A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */,

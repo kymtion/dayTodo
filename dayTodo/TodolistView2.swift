@@ -66,7 +66,7 @@ struct TodolistView2: View {
             }
             .listStyle(.plain)
             .environment(\.editMode, .constant(isEditing ? .active : .inactive))
-            .sheet(isPresented: $showingWriteView) {
+            .fullScreenCover(isPresented: $showingWriteView) {
                 if let selectedMemo = selectedMemo {
                     WriteView(viewModel: viewModel, memo: selectedMemo)
                 } else {

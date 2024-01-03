@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var selectedMemo: MemoData?
     @State private var isEditing = false
     
+    
     var body: some View {
         
         VStack {
@@ -23,7 +24,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-            
+                
                 Button {
                     showingWriteView = true
                     selectedMemo = nil
@@ -32,6 +33,13 @@ struct HomeView: View {
                     Image(systemName: "plus")
                         .font(.system(size: 20))
                         .foregroundColor(.orange)
+                }
+                .fullScreenCover(isPresented: $showingWriteView) {
+                    if let selectedMemo = selectedMemo {
+                        WriteView(viewModel: viewModel, memo: selectedMemo)
+                    } else {
+                        WriteView(viewModel: viewModel)
+                    }
                 }
             }
             .padding(.horizontal, 20)
@@ -42,7 +50,7 @@ struct HomeView: View {
                     Section(header: Text("today")
                         .font(.system(size: 23, weight: .bold))
                         .foregroundColor(.black)
-                    
+                            
                     ) {
                         ForEach(viewModel.memos, id: \.id) { memo in
                             if Calendar.current.isDate(memo.date, inSameDayAs: Date()) {
@@ -78,13 +86,7 @@ struct HomeView: View {
                 Spacer ()
             }
         }
-        .sheet(isPresented: $showingWriteView) {
-            if let selectedMemo = selectedMemo {
-                WriteView(viewModel: viewModel, memo: selectedMemo)
-            } else {
-                WriteView(viewModel: viewModel)
-            }
-        }
+        
         .onAppear {
             viewModel.loadMemos()
             viewModel.updatePastIncompleteMemos()
@@ -140,9 +142,3 @@ struct HomeView: View {
     }
 }
 
-
-
-#Preview {
-    HomeView()
-        .environmentObject(CalendarViewModel())
-}

@@ -50,17 +50,32 @@ struct WriteView: View {
     var body: some View {
         VStack {
             HStack {
+                
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "chevron.left")
+                        Text("닫기")
+                       
+                    }
+                    .font(.system(size: 17, weight: .medium))
+                    .foregroundColor(.orange)
+                }
+                Spacer()
+                
                 Button {
                     alertType = .deleteConfirmation
                 } label: {
                     Image(systemName: "trash")
                 }
+                .padding(.horizontal, 15)
                 .foregroundColor(.orange)
                 
+             
                 
-                
-                Spacer()
-                Button("저장") {
+                Button {
+                    
                     if title.isEmpty {
                         alertType = .emptyTitle
                     } else {
@@ -76,10 +91,14 @@ struct WriteView: View {
                         
                         presentationMode.wrappedValue.dismiss()
                     }
+                } label: {
+                    Text("저장")
+                    .font(.system(size: 17, weight: .medium))
                 }
                 .foregroundColor(.orange)
             }
-            .padding(20)
+            .padding(.horizontal, 25)
+            .padding(.vertical, 15)
             .alert(item: $alertType) { type in
                 switch type {
                 case .deleteConfirmation:
@@ -111,11 +130,8 @@ struct WriteView: View {
                     .frame(width: UIScreen.main.bounds.width * 0.89)
                 
                 
-                TextEditor(text: $content)
+                CustomTextEditor(text: $content, lineSpacing: 8)
                     .focused($focusedField, equals: .content)
-                    .font(.system(size: 18, weight: .regular))
-                    .opacity(0.8)
-                    .background(Color(UIColor.systemBackground))
                     .frame(maxHeight: .infinity)
                     .frame(width: UIScreen.main.bounds.width * 0.9)
             }
@@ -125,6 +141,7 @@ struct WriteView: View {
             }
             Spacer()
         }
+        
     }
     
     
