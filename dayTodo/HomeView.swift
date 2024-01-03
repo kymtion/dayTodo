@@ -23,10 +23,11 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                // 홈뷰는 선택된 날짜가 없기때문에 기본값이 현재날짜로 되어 저장됨
+            
                 Button {
                     showingWriteView = true
                     selectedMemo = nil
+                    viewModel.isDateSelected = false  // 날짜 선택 플래그 초기화
                 } label: {
                     Image(systemName: "plus")
                         .font(.system(size: 20))
@@ -86,6 +87,7 @@ struct HomeView: View {
         }
         .onAppear {
             viewModel.loadMemos()
+            viewModel.updatePastIncompleteMemos()
             
         }
         .background(Color(UIColor.systemGray6))

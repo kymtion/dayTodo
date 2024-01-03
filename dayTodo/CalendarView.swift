@@ -85,6 +85,7 @@ struct FSCalendarWrapper: UIViewRepresentable {
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
                DispatchQueue.main.async {
                    self.parent.viewModel.selectedDate = date
+                   self.parent.viewModel.isDateSelected = true  // 날짜 선택 플래그 설정
                }
            }
         

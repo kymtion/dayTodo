@@ -8,16 +8,30 @@ class CalendarViewModel: ObservableObject {
     @Published var selectedDate = Date()
     @Published var memos: [MemoData] = []
     @Published var dataChanged = false
+    @Published var isDateSelected = false
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.dateFormat = "MM.dd (E)"
+        formatter.locale = Locale(identifier: "ko_KR") 
         return formatter
     }()
     
     init() {
         loadMemos()
     }
+    
+    func updatePastIncompleteMemos() {
+            let todayStart = Calendar.current.startOfDay(for: Date())
+            
+            for index in memos.indices {
+                if memos[index].date < todayStart && !memos[index].isCompleted {
+                    memos[index].date = todayStart
+                }
+            }
+            
+            saveAllMemos() // 변경된 내용 저장
+        }
     
     func moveMemo(from source: IndexSet, to destination: Int) {
             memos.move(fromOffsets: source, toOffset: destination)
@@ -38,22 +52,26 @@ class CalendarViewModel: ObservableObject {
         return hasEvent
     }
     
-    func saveMemo(title: String, content: String, id: UUID? = nil) {
-        if let id = id {
-            // 기존 메모 업데이트 또는 새 메모 추가
-            if let index = memos.firstIndex(where: { $0.id == id }) {
-                memos[index] = MemoData(id: id, title: title, content: content, date: selectedDate)
+    func saveMemo(title: String, content: String, isCompleted: Bool, id: UUID? = nil) {
+            let dateToSave = isDateSelected ? selectedDate : Calendar.current.startOfDay(for: Date())
+
+            if let id = id {
+                // 기존 메모 업데이트
+                if let index = memos.firstIndex(where: { $0.id == id }) {
+                    memos[index] = MemoData(id: id, title: title, content: content, date: dateToSave, isCompleted: isCompleted)
+                } else {
+                    // 새 메모 추가
+                    memos.append(MemoData(title: title, content: content, date: dateToSave, isCompleted: isCompleted))
+                }
             } else {
-                memos.append(MemoData(title: title, content: content, date: selectedDate))
+                // 새 메모 추가
+                memos.append(MemoData(title: title, content: content, date: dateToSave, isCompleted: isCompleted))
             }
             saveAllMemos()
-        } else {
-            // 새 메모 추가
-            memos.append(MemoData(title: title, content: content, date: selectedDate))
-            saveAllMemos()
+            self.dataChanged = true
         }
-        self.dataChanged = true
-    }
+
+
     
     func deleteMemo(id: UUID) {
         if let index = memos.firstIndex(where: { $0.id == id }) {

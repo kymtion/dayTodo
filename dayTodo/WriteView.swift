@@ -22,7 +22,7 @@ struct WriteView: View {
     enum AlertType: Identifiable {
         case deleteConfirmation
         case emptyTitle
-
+        
         var id: Int {
             switch self {
             case .deleteConfirmation:
@@ -64,13 +64,22 @@ struct WriteView: View {
                     if title.isEmpty {
                         alertType = .emptyTitle
                     } else {
-                        viewModel.saveMemo(title: title, content: content, id: memoId)
+                        // 현재 날짜의 0시 0분을 계산
+                        let todayStart = Calendar.current.startOfDay(for: Date())
+                        
+                        // 선택된 날짜가 todayStart보다 이전이라면, 메모 상태를 완료로 설정
+                        if viewModel.selectedDate < todayStart {
+                            viewModel.saveMemo(title: title, content: content, isCompleted: true, id: memoId)
+                        } else {
+                            viewModel.saveMemo(title: title, content: content, isCompleted: false, id: memoId)
+                        }
+                        
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
                 .foregroundColor(.orange)
             }
-            .padding()
+            .padding(20)
             .alert(item: $alertType) { type in
                 switch type {
                 case .deleteConfirmation:
@@ -126,11 +135,6 @@ struct WriteView: View {
         }
     }
 }
-
-
-
-
-
 
 
 
