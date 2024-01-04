@@ -40,6 +40,10 @@ struct TodolistView2: View {
                 ForEach(viewModel.memos, id: \.id) { memo in
                     if Calendar.current.isDate(memo.date, inSameDayAs: viewModel.selectedDate) {
                         HStack {
+                            Image(systemName: memo.isCompleted ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(memo.isCompleted ? .gray : .gray)
+                                .font(.system(size: 20))
+                            
                             Text(memo.title)
                                 .font(.system(size: 17, weight: .semibold))
                                 .foregroundColor(.black)

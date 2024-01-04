@@ -28,19 +28,13 @@ struct HomeView: View {
                 Button {
                     showingWriteView = true
                     selectedMemo = nil
-                    viewModel.isDateSelected = false  // 날짜 선택 플래그 초기화
+                    viewModel.isDateSelected = false  // 선택된 날짜가 없음으로 초기화해서 나중에 저장할때 현재날짜로 저장되도록 하기 위함!
                 } label: {
                     Image(systemName: "plus")
                         .font(.system(size: 20))
                         .foregroundColor(.orange)
                 }
-                .fullScreenCover(isPresented: $showingWriteView) {
-                    if let selectedMemo = selectedMemo {
-                        WriteView(viewModel: viewModel, memo: selectedMemo)
-                    } else {
-                        WriteView(viewModel: viewModel)
-                    }
-                }
+               
             }
             .padding(.horizontal, 20)
             .padding(.top, 15)
@@ -84,6 +78,13 @@ struct HomeView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 16, weight: .regular))
                 Spacer ()
+            }
+        }
+        .fullScreenCover(isPresented: $showingWriteView) {
+            if let selectedMemo = selectedMemo {
+                WriteView(viewModel: viewModel, memo: selectedMemo)
+            } else {
+                WriteView(viewModel: viewModel)
             }
         }
         
