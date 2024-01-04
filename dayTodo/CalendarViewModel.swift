@@ -77,7 +77,7 @@ class CalendarViewModel: ObservableObject {
             // 새 메모 추가
             memos.append(MemoData(title: title, content: content, date: dateToSave, isCompleted: isCompleted))
         }
-        memos.sort(by: { $0.date < $1.date })
+        sortMemosByDateIgnoringTime()
         saveAllMemos()
         self.dataChanged = true
     }
