@@ -3,6 +3,7 @@
 import Foundation
 import SwiftUI
 import FSCalendar
+import WidgetKit
 
 class CalendarViewModel: ObservableObject {
     @Published var selectedDate = Date()
@@ -51,6 +52,7 @@ class CalendarViewModel: ObservableObject {
         if let index = memos.firstIndex(where: { $0.id == memo.id }) {
             memos[index].isCompleted.toggle()
             saveAllMemos()
+            WidgetCenter.shared.reloadAllTimelines() // 위젯 새로고침
         }
     }
     
@@ -80,6 +82,7 @@ class CalendarViewModel: ObservableObject {
         sortMemosByDateIgnoringTime()
         saveAllMemos()
         self.dataChanged = true
+        WidgetCenter.shared.reloadAllTimelines() // 위젯 새로고침
     }
     
     
@@ -91,6 +94,7 @@ class CalendarViewModel: ObservableObject {
             saveAllMemos()
         }
         self.dataChanged = true
+        WidgetCenter.shared.reloadAllTimelines() // 위젯 새로고침
     }
     
     func acknowledgeDataChange() {
@@ -100,23 +104,27 @@ class CalendarViewModel: ObservableObject {
     
     
     func saveAllMemos() {
-        if let encoded = try? JSONEncoder().encode(memos) {
-            UserDefaults.standard.set(encoded, forKey: "memos")
-        }
-    }
+           if let encoded = try? JSONEncoder().encode(memos) {
+               if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
+                   userDefaults.set(encoded, forKey: "memos")
+               }
+           }
+       }
     
     
     func loadMemos() {
-        if let savedMemos = UserDefaults.standard.object(forKey: "memos") as? Data {
-            if let decodedMemos = try? JSONDecoder().decode([MemoData].self, from: savedMemos) {
-                self.memos = decodedMemos
-                sortMemosByDateIgnoringTime()
-                print("Memos loaded successfully")
-            }
-        } else {
-            print("No saved memos to load")
-        }
-    }
+           if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
+               if let savedMemos = userDefaults.object(forKey: "memos") as? Data {
+                   if let decodedMemos = try? JSONDecoder().decode([MemoData].self, from: savedMemos) {
+                       self.memos = decodedMemos
+                       sortMemosByDateIgnoringTime()
+                       print("Memos loaded successfully")
+                   }
+               } else {
+                   print("No saved memos to load")
+               }
+           }
+       }
     
     
     

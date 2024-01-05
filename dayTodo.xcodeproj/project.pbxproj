@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A808AAC32B47CD6D003D05A2 /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E492B40079D00A68E77 /* MemoData.swift */; };
 		A84118802B4593CF00ED6136 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A841187F2B4593CF00ED6136 /* WidgetKit.framework */; };
 		A84118822B4593CF00ED6136 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A84118812B4593CF00ED6136 /* SwiftUI.framework */; };
 		A84118852B4593CF00ED6136 /* todolistBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84118842B4593CF00ED6136 /* todolistBundle.swift */; };
@@ -388,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A808AAC32B47CD6D003D05A2 /* MemoData.swift in Sources */,
 				A84118892B4593CF00ED6136 /* todolist.swift in Sources */,
 				A84118852B4593CF00ED6136 /* todolistBundle.swift in Sources */,
 			);
