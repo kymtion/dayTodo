@@ -39,6 +39,7 @@ class CalendarViewModel: ObservableObject {
                 memos[index].date = todayStart
             }
         }
+        WidgetCenter.shared.reloadAllTimelines()
         sortMemosByDateIgnoringTime()
         saveAllMemos() // 변경된 내용 저장
     }

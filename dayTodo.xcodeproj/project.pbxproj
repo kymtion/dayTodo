@@ -78,6 +78,7 @@
 		A841188C2B4593D100ED6136 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A841188E2B4593D100ED6136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A84118962B45A52400ED6136 /* todolistExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = todolistExtension.entitlements; sourceTree = "<group>"; };
+		A85EA6BE2B4D69FE005780DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		A89C6E382B3D608100A68E77 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		A89C6E3A2B3D60A700A68E77 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */,
 				A8CC93B62B3D56B0006F2135 /* Assets.xcassets */,
 				A8CC93B82B3D56B0006F2135 /* dayTodo.entitlements */,
+				A85EA6BE2B4D69FE005780DD /* Info.plist */,
 				A8CC93B92B3D56B0006F2135 /* Preview Content */,
 			);
 			path = dayTodo;
@@ -637,7 +639,10 @@
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/gang-yeongmin/Desktop/dayTodo/dayTodo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = dayTodo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -676,7 +681,10 @@
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/gang-yeongmin/Desktop/dayTodo/dayTodo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = dayTodo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

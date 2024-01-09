@@ -39,17 +39,9 @@ struct Provider: TimelineProvider {
             entries.append(entry)
         }
         
-        // 다음 날짜의 자정을 계산합니다.
-        let calendar = Calendar.current
-        let now = Date()
-        let startOfNextDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: now)!)
-        
-        // 다음 날짜의 자정에 대한 엔트리를 추가합니다.
-        let midnightEntry = SimpleEntry(date: startOfNextDay, memoData: [])
-        entries.append(midnightEntry)
         
         // 타임라인을 생성하고, 다음 업데이트 시간을 자정으로 설정합니다.
-        let timeline = Timeline(entries: entries, policy: .after(startOfNextDay))
+        let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
     
@@ -64,19 +56,19 @@ struct todolistEntryView : View {
     var entry: SimpleEntry
     
     // DateFormatter 선언
-       let dateFormatter: DateFormatter = {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "MM.dd (E)"
-           formatter.locale = Locale(identifier: "ko_KR")
-           return formatter
-       }()
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM.dd (E)"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
     
     var body: some View {
         VStack {
             HStack {
                 Image(systemName: "note.text")
                     .foregroundColor(.orange)
-                Text ("TO DO LIST")
+                Text ("To Do List")
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(.black)
                 Spacer ()
@@ -91,62 +83,62 @@ struct todolistEntryView : View {
                         Image(systemName: "circle") // 미완료 메모에는 빈 원을 표시
                             .foregroundColor(.gray) // 미완료 메모의 빈 원 색상
                     }
-                        
-                        VStack(alignment: .leading) {
-                            Text(memo.title)
-                                .font(.system(size: 16, weight: memo.isCompleted ? .light : .regular))
-                                .opacity(memo.isCompleted ? 0.7 : 1) // 완료된 경우 투명도 적용
-                                .strikethrough(memo.isCompleted, color: .black) // 완료된 경우 빗금 적용
-                            Text(dateFormatter.string(from: memo.date))
-                                .font(.system(size: 10, weight: .regular))
-                                .foregroundColor(.gray)
-                        }
-                        Spacer ()
-                    }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 5)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.orange.opacity(0.8), lineWidth: 1))
                     
+                    VStack(alignment: .leading) {
+                        Text(memo.title)
+                            .font(.system(size: 15, weight: memo.isCompleted ? .light : .regular))
+                            .opacity(memo.isCompleted ? 0.7 : 1) // 완료된 경우 투명도 적용
+                            .strikethrough(memo.isCompleted, color: .black) // 완료된 경우 빗금 적용
+                        Text(dateFormatter.string(from: memo.date))
+                            .font(.system(size: 10, weight: .regular))
+                            .foregroundColor(.gray)
+                    }
+                    Spacer ()
                 }
-                Spacer()
+                .padding(.horizontal, 20)
+                .padding(.vertical, 5)
+                .background(Color.white)
+                .cornerRadius(10)
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.orange.opacity(0.8), lineWidth: 1))
+                
             }
+            Spacer()
         }
     }
+}
+
+
+struct todolist: Widget {
+    let kind: String = "todolist"
     
-    
-    struct todolist: Widget {
-        let kind: String = "todolist"
-        
-        var body: some WidgetConfiguration {
-            StaticConfiguration(kind: kind, provider: Provider()) { entry in
-                todolistEntryView(entry: entry)
-                    .widgetBackground(Color(UIColor.white))
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            todolistEntryView(entry: entry)
+                .widgetBackground(Color(UIColor.white))
+        }
+        .configurationDisplayName("To-Do List")
+        .description("Displays your to-do list items.")
+    }
+}
+
+extension View {
+    func widgetBackground(_ color: Color) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            return containerBackground(for: .widget) {
+                color
             }
-            .configurationDisplayName("To-Do List")
-            .description("Displays your to-do list items.")
+        } else {
+            return background(color)
         }
     }
-    
-    extension View {
-        func widgetBackground(_ color: Color) -> some View {
-            if #available(iOSApplicationExtension 17.0, *) {
-                return containerBackground(for: .widget) {
-                    color
-                }
-            } else {
-                return background(color)
-            }
-        }
-    }
-    
-    
-    //
-    //#Preview(as: .systemSmall) {
-    //    todolist()
-    //} timeline: {
-    //    SimpleEntry(date: .now, title: "Memo 1")
-    //    SimpleEntry(date: .now.addingTimeInterval(3600), title: "Memo 2")
-    //}
+}
+
+
+//
+//#Preview(as: .systemSmall) {
+//    todolist()
+//} timeline: {
+//    SimpleEntry(date: .now, title: "Memo 1")
+//    SimpleEntry(date: .now.addingTimeInterval(3600), title: "Memo 2")
+//}
