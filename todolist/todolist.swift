@@ -101,6 +101,7 @@ struct todolistEntryView : View {
                 .cornerRadius(10)
                 .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.orange.opacity(0.8), lineWidth: 1))
+                .opacity(Calendar.current.isDateInToday(memo.date) ? 1.0 : 0.3)
                 
             }
             Spacer()
