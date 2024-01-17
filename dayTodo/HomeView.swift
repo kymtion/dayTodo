@@ -79,6 +79,12 @@ struct HomeView: View {
                     .font(.system(size: 16, weight: .regular))
                 Spacer ()
             }
+            BannerAdView()
+                           .frame(width: 320, height: 50, alignment: .center)
+                           .background(Color.white)
+                           .cornerRadius(10)
+                           .padding(10)
+            
         }
         .fullScreenCover(isPresented: $showingWriteView) {
             if let selectedMemo = selectedMemo {

@@ -68,7 +68,7 @@ struct todolistEntryView : View {
             HStack {
                 Image(systemName: "note.text")
                     .foregroundColor(.orange)
-                Text ("To Do List")
+                Text ("Today")
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(.black)
                 Spacer ()
