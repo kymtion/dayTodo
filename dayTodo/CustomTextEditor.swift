@@ -41,7 +41,7 @@ struct CustomTextEditor: UIViewRepresentable {
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: style,
             .font: UIFont.systemFont(ofSize: 17, weight: .regular), // 크기와 두께 설정
-            .foregroundColor: UIColor.black.withAlphaComponent(0.8) // 색상과 투명도 설정
+            .foregroundColor: UIColor.label.withAlphaComponent(0.8) // 색상과 투명도 설정
         ]
         
         uiView.attributedText = NSAttributedString(string: text, attributes: attributes)

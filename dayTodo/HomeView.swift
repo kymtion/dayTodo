@@ -131,7 +131,7 @@ struct HomeView: View {
                 Text(memo.title)
                     .font(.system(size: 17, weight: memo.isCompleted ? .light : .medium))
                     .opacity(memo.isCompleted ? 0.7 : 1) // 완료된 경우 투명도 적용
-                    .strikethrough(memo.isCompleted, color: .black) // 완료된 경우 빗금 적용
+                    .strikethrough(memo.isCompleted, color: .primary) // 완료된 경우 빗금 적용
                 Text(CalendarViewModel.dateFormatter.string(from: memo.date))
                     .font(.caption)
                     .foregroundColor(.gray)
