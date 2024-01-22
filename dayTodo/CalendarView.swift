@@ -18,7 +18,8 @@ struct CalendarView: View {
         .onAppear {
             viewModel.loadMemos()
         }
-        .padding(10)
+        .padding(.horizontal, 15)
+        .padding(.bottom, 15)
     }
 }
 
@@ -36,6 +37,7 @@ struct FSCalendarWrapper: UIViewRepresentable {
         calendar.locale = Locale(identifier: "ko_KR")
         calendar.appearance.headerDateFormat = "⟨    yyyy년 MM월    ⟩"
         calendar.headerHeight = 50 // 헤더 높이 조정
+        calendar.weekdayHeight = 40
         calendar.appearance.titlePlaceholderColor = UIColor.clear
         
         // 달력 제목 스타일 변경

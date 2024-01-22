@@ -34,7 +34,8 @@ struct TodolistView2: View {
                     }
                 }
             }
-            .padding(15)
+            .padding(.bottom, 10)
+            .padding(.horizontal, 10)
             
             List {
                 ForEach(viewModel.memos, id: \.id) { memo in

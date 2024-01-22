@@ -81,9 +81,8 @@ struct HomeView: View {
             }
             BannerAdView()
                            .frame(width: 320, height: 50, alignment: .center)
-                           .background(Color.white)
                            .cornerRadius(10)
-                           .padding(10)
+                           .padding(.bottom, 10)
             
         }
         .fullScreenCover(isPresented: $showingWriteView) {
