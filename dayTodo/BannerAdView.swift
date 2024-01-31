@@ -7,13 +7,15 @@ import UIKit
 struct BannerAdView: UIViewRepresentable {
     func makeUIView(context: Context) -> GADBannerView {
         let banner = GADBannerView(adSize: GADAdSizeBanner)
+        banner.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        // 배너 광고 테스트 id "ca-app-pub-3940256099942544/2934735716"
+        // 실제 배너 광고 id "ca-app-pub-9566336929959750/6192457927"
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            banner.rootViewController = windowScene.windows.first?.rootViewController
+        }
 
-        // 여기에 실제 광고 단위 ID를 사용하세요. 테스트 시에는 Google의 테스트 광고 단위 ID를 사용할 수 있습니다.
-        banner.adUnitID = "ca-app-pub-9566336929959750/6192457927"
-        banner.rootViewController = UIApplication.shared.windows.first?.rootViewController
         banner.load(GADRequest())
         return banner
     }
-
     func updateUIView(_ uiView: GADBannerView, context: Context) {}
 }

@@ -46,7 +46,7 @@ struct TodolistView2: View {
                                 .font(.system(size: 20))
                             
                             Text(memo.title)
-                                .font(.system(size: 17, weight: .medium))
+                                .font(.system(size: 16, weight: .regular))
                                 .foregroundColor(Color.primary)
                                 .padding(.vertical, 7)
                             Spacer()

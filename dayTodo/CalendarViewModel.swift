@@ -21,6 +21,34 @@ class CalendarViewModel: ObservableObject {
     init() {
         loadMemos()
     }
+    
+    struct YearMonth: Hashable {
+        var year: Int
+        var month: Int
+    }
+    
+    // 사용 가능한 연월 목록을 반환하는 함수
+        var availableYearMonths: [String] {
+            let today = Date()
+            let currentYear = Calendar.current.component(.year, from: today)
+            let currentMonth = Calendar.current.component(.month, from: today)
+
+            let yearMonths = memos.map { memo -> YearMonth in
+                let year = Calendar.current.component(.year, from: memo.date)
+                let month = Calendar.current.component(.month, from: memo.date)
+                return YearMonth(year: year, month: month)
+            }
+
+            let filteredYearMonths = yearMonths.filter {
+                $0.year < currentYear || ($0.year == currentYear && $0.month <= currentMonth)
+            }
+
+            // 중복 제거 후 내림차순 정렬
+            let uniqueYearMonths = Set(filteredYearMonths)
+            let sortedYearMonths = uniqueYearMonths.sorted { $0.year > $1.year || ($0.year == $1.year && $0.month > $1.month) }
+            return sortedYearMonths.map { "\($0.year)년 \($0.month)월" }
+        }
+    
     // 날짜의 시간 개념을 제외하고 년, 월, 일 만 고려하게 만드는 함수
     func sortMemosByDateIgnoringTime() {
         let calendar = Calendar.current
@@ -105,27 +133,27 @@ class CalendarViewModel: ObservableObject {
     
     
     func saveAllMemos() {
-           if let encoded = try? JSONEncoder().encode(memos) {
-               if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
-                   userDefaults.set(encoded, forKey: "memos")
-               }
-           }
-       }
+        if let encoded = try? JSONEncoder().encode(memos) {
+            if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
+                userDefaults.set(encoded, forKey: "memos")
+            }
+        }
+    }
     
     
     func loadMemos() {
-           if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
-               if let savedMemos = userDefaults.object(forKey: "memos") as? Data {
-                   if let decodedMemos = try? JSONDecoder().decode([MemoData].self, from: savedMemos) {
-                       self.memos = decodedMemos
-                       sortMemosByDateIgnoringTime()
-                       print("Memos loaded successfully")
-                   }
-               } else {
-                   print("No saved memos to load")
-               }
-           }
-       }
+        if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
+            if let savedMemos = userDefaults.object(forKey: "memos") as? Data {
+                if let decodedMemos = try? JSONDecoder().decode([MemoData].self, from: savedMemos) {
+                    self.memos = decodedMemos
+                    sortMemosByDateIgnoringTime()
+                    print("Memos loaded successfully")
+                }
+            } else {
+                print("No saved memos to load")
+            }
+        }
+    }
     
     
     

@@ -50,7 +50,7 @@ struct FSCalendarWrapper: UIViewRepresentable {
         
         // 날짜 숫자 부분
         calendar.appearance.titleFont = UIFont.systemFont(ofSize: 16, weight: .medium)
-        calendar.appearance.titleDefaultColor = UIColor.label.withAlphaComponent(0.85) 
+        calendar.appearance.titleDefaultColor = UIColor.label.withAlphaComponent(0.85)
         calendar.appearance.titleWeekendColor = UIColor.label.withAlphaComponent(0.4)
         
         // 현재 날짜 표시 색상 변경
@@ -63,8 +63,8 @@ struct FSCalendarWrapper: UIViewRepresentable {
     
     func updateUIView(_ uiView: FSCalendar, context: Context) {
         if viewModel.dataChanged {
-            uiView.reloadData()
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                uiView.reloadData()
                 self.viewModel.acknowledgeDataChange()
             }
         }
@@ -89,7 +89,20 @@ struct FSCalendarWrapper: UIViewRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            return parent.viewModel.hasEvent(on: date) ? 1 : 0
+            let currentPageMonth = Calendar.current.component(.month, from: calendar.currentPage)
+            let eventDateMonth = Calendar.current.component(.month, from: date)
+            
+            if currentPageMonth == eventDateMonth && parent.viewModel.hasEvent(on: date) {
+                return 1  // 현재 달에 속하고 이벤트가 있는 날짜에만 점 표시
+            } else {
+                return 0  // 다른 달에 속하는 날짜에는 점 표시하지 않음
+            }
+        }
+        
+        func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // 1초 딜레이
+                calendar.reloadData() // 달력 데이터 새로고침
+            }
         }
         
     }

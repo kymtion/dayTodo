@@ -14,6 +14,7 @@ struct WriteView: View {
     @State private var newDate = Date()
     @State private var showingChangeDateMessage = false
     
+    
     @FocusState private var focusedField: Field?
     var memoId: UUID?
     
@@ -59,7 +60,8 @@ struct WriteView: View {
     var body: some View {
         VStack {
             ZStack {
-                Text(CalendarViewModel.dateFormatter.string(from: memoDate ?? Date()))                    .font(.system(size: 15, weight: .regular))
+                Text(CalendarViewModel.dateFormatter.string(from: memoDate ?? Date()))
+                    .font(.system(size: 15, weight: .regular))
                     .foregroundColor(.gray)
                 HStack {
                     
@@ -74,9 +76,8 @@ struct WriteView: View {
                         .font(.system(size: 17, weight: .medium))
                         .foregroundColor(.orange)
                     }
+                    
                     Spacer()
-                    
-                    
                     
                     Button {
                         showingDetailOptions = true
@@ -102,9 +103,7 @@ struct WriteView: View {
                         )
                     }
                     
-                    
                     Button {
-                        
                         if title.isEmpty {
                             alertType = .emptyTitle
                         } else {
@@ -123,7 +122,6 @@ struct WriteView: View {
                                     viewModel.saveMemo(title: title, content: content, isCompleted: false, id: memoId)
                                 }
                             }
-                            
                             presentationMode.wrappedValue.dismiss()
                         }
                     } label: {
@@ -166,10 +164,15 @@ struct WriteView: View {
                     .frame(width: UIScreen.main.bounds.width * 0.89)
                 
                 
-                CustomTextEditor(text: $content, lineSpacing: 8)
+                TextEditor(text: $content)
                     .focused($focusedField, equals: .content)
+                    .font(.system(size: 17)) // TextEditor에 폰트 크기 설정
+                    .lineSpacing(6)
+                    .foregroundColor(Color.black.opacity(0.7))
+                    .padding(.bottom, 10) // TextEditor에 패딩 설정
                     .frame(maxHeight: .infinity)
-                    .frame(width: UIScreen.main.bounds.width * 0.9)
+                    .frame(width: UIScreen.main.bounds.width * 0.91)
+                    
             }
             .padding()
             .onAppear {

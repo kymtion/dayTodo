@@ -122,6 +122,7 @@ struct HomeView: View {
             if Calendar.current.isDate(memo.date, inSameDayAs: Date()) {
                 Image(systemName: memo.isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(memo.isCompleted ? .orange : .gray)
+                    .font(.system(size: 19))
                     .onTapGesture {
                         viewModel.toggleMemoCompletion(memo)
                     }
