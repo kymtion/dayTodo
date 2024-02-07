@@ -39,11 +39,19 @@ struct Provider: TimelineProvider {
                 entries.append(entry)
         }
         
-        
-        // 타임라인을 생성하고, 다음 업데이트 시간을 자정으로 설정합니다.
-        let timeline = Timeline(entries: entries, policy: .never)
-        completion(timeline)
-    }
+        // 다음 날 자정 시간 계산 -> 아직 아래 코드는 테스트 안해봄! 테스트 해보고 판단하자, 밤 12시에 날짜가 변경될지! 보자!
+           var nextDayComponent = DateComponents()
+           nextDayComponent.day = 1
+           let nextMidnight = Calendar.current.date(byAdding: nextDayComponent, to: todayStart)!
+
+           // 다음 날 자정에 대한 엔트리 추가
+           let nextDayEntry = SimpleEntry(date: nextMidnight, memoData: displayedMemos, family: context.family)
+           entries.append(nextDayEntry)
+
+           // 타임라인 생성, 다음 업데이트 시간을 다음 날 자정으로 설정
+           let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
+           completion(timeline)
+       }
     
 }
 
@@ -64,6 +72,15 @@ struct todolistEntryView : View {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM.dd (E)"
         formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
+    
+    // DateFormatter 선언2
+    let dateFormatter2: DateFormatter = {
+        let formatter = DateFormatter()
+        // "M월 d일 EEEE" 형식 설정 (예: "3월 17일 화요일")
+        formatter.dateFormat = "M월 d일 EEEE"
+        formatter.locale = Locale(identifier: "ko_KR") // 한국어 설정
         return formatter
     }()
     
@@ -142,7 +159,7 @@ struct todolistEntryView : View {
             HStack {
                 Image(systemName: "note.text")
                     .foregroundColor(.orange)
-                Text ("Today")
+                Text(dateFormatter2.string(from: Date()))
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(Color.primary)
                 Spacer ()
@@ -169,7 +186,7 @@ struct todolistEntryView : View {
                     }
                     Spacer ()
                 }
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 10)
                 .padding(.vertical, 5)
                 .background(colorScheme == .dark ? Color(UIColor.systemBackground) : Color.white)
                 .cornerRadius(10)

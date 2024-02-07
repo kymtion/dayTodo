@@ -32,7 +32,7 @@ struct RecordView: View {
                                     .foregroundColor(.orange) // 오렌지색 지정
                                 Text(memo.title)
                                     .font(.system(size: 16, weight: .regular))
-                                    .foregroundColor(.black.opacity(0.9))
+                                    .foregroundColor(.primary.opacity(0.9))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 15))

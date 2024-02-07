@@ -168,7 +168,7 @@ struct WriteView: View {
                     .focused($focusedField, equals: .content)
                     .font(.system(size: 17)) // TextEditor에 폰트 크기 설정
                     .lineSpacing(6)
-                    .foregroundColor(Color.black.opacity(0.7))
+                    .foregroundColor(Color.primary.opacity(0.8))
                     .padding(.bottom, 10) // TextEditor에 패딩 설정
                     .frame(maxHeight: .infinity)
                     .frame(width: UIScreen.main.bounds.width * 0.91)

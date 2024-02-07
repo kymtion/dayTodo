@@ -43,7 +43,7 @@ struct HomeView: View {
                 List {
                     Section(header: Text("today")
                         .font(.system(size: 23, weight: .bold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary) 
                             
                     ) {
                         ForEach(viewModel.memos, id: \.id) { memo in

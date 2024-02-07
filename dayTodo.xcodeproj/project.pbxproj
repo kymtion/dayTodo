@@ -15,7 +15,8 @@
 		A841188D2B4593D100ED6136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A841188C2B4593D100ED6136 /* Assets.xcassets */; };
 		A84118912B4593D100ED6136 /* todolistExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A841187D2B4593CF00ED6136 /* todolistExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A85F010C2B68CD5C00F2C616 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F010B2B68CD5C00F2C616 /* RecordView.swift */; };
-		A878DB5F2B4548FB00423B32 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */; };
+		A8998DBF2B735BE8007A848A /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A8998DBE2B735BE8007A848A /* FirebaseRemoteConfigSwift */; };
+		A8998DC12B735C02007A848A /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A8998DC02B735C02007A848A /* FirebaseRemoteConfig */; };
 		A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E382B3D608100A68E77 /* TabBarView.swift */; };
 		A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3A2B3D60A700A68E77 /* HomeView.swift */; };
 		A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */; };
@@ -84,7 +85,6 @@
 		A841188E2B4593D100ED6136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A84118962B45A52400ED6136 /* todolistExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = todolistExtension.entitlements; sourceTree = "<group>"; };
 		A85F010B2B68CD5C00F2C616 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		A89C6E382B3D608100A68E77 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		A89C6E3A2B3D60A700A68E77 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -122,8 +122,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A89D6C652B57A9950007FF91 /* GoogleMobileAds in Frameworks */,
+				A8998DBF2B735BE8007A848A /* FirebaseRemoteConfigSwift in Frameworks */,
 				A89C6E422B3DCCA500A68E77 /* FSCalendar in Frameworks */,
 				A89D6C6F2B590E620007FF91 /* FirebaseAnalytics in Frameworks */,
+				A8998DC12B735C02007A848A /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +203,6 @@
 				A89C6E472B40043300A68E77 /* WriteView.swift */,
 				A85F010B2B68CD5C00F2C616 /* RecordView.swift */,
 				A89C6E492B40079D00A68E77 /* MemoData.swift */,
-				A878DB5E2B4548FB00423B32 /* CustomTextEditor.swift */,
 				A89D6C692B57BF180007FF91 /* BannerAdView.swift */,
 				A8CC93B62B3D56B0006F2135 /* Assets.xcassets */,
 				A8CC93B82B3D56B0006F2135 /* dayTodo.entitlements */,
@@ -275,6 +276,8 @@
 				A89C6E412B3DCCA500A68E77 /* FSCalendar */,
 				A89D6C642B57A9950007FF91 /* GoogleMobileAds */,
 				A89D6C6E2B590E620007FF91 /* FirebaseAnalytics */,
+				A8998DBE2B735BE8007A848A /* FirebaseRemoteConfigSwift */,
+				A8998DC02B735C02007A848A /* FirebaseRemoteConfig */,
 			);
 			productName = dayTodo;
 			productReference = A8CC93AF2B3D56AF006F2135 /* dayTodo.app */;
@@ -424,7 +427,6 @@
 				A89C6E442B3EDA3500A68E77 /* TodolistView2.swift in Sources */,
 				A85F010C2B68CD5C00F2C616 /* RecordView.swift in Sources */,
 				A89C6E3F2B3D661700A68E77 /* CalendarViewModel.swift in Sources */,
-				A878DB5F2B4548FB00423B32 /* CustomTextEditor.swift in Sources */,
 				A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */,
 				A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */,
 				A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */,
@@ -478,19 +480,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = todolistExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.5.2;
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todolist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = todolist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo.todolist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -512,19 +514,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = todolistExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.5.2;
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todolist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = todolist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo.todolist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -666,7 +668,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = dayTodo/dayTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.5.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"dayTodo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2YJKG9924M;
@@ -686,11 +688,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -711,7 +713,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = dayTodo/dayTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.5.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"dayTodo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2YJKG9924M;
@@ -731,11 +733,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -924,6 +926,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A8998DBE2B735BE8007A848A /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A89D6C6D2B590E620007FF91 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+		A8998DC02B735C02007A848A /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A89D6C6D2B590E620007FF91 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
 		A89C6E412B3DCCA500A68E77 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A89C6E402B3DCCA500A68E77 /* XCRemoteSwiftPackageReference "FSCalendar" */;
