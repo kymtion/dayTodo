@@ -8,7 +8,7 @@ struct Provider: TimelineProvider {
         if let userDefaults = UserDefaults(suiteName: "group.kr.com.daytodo") {
             if let savedMemos = userDefaults.object(forKey: "memos") as? Data {
                 if let decodedMemos = try? JSONDecoder().decode([MemoData].self, from: savedMemos) {
-                    return decodedMemos
+                    return decodedMemos.filter { $0.memoType == .todo }
                 }
             }
         }

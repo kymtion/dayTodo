@@ -7,7 +7,6 @@ struct HomeView: View {
     @State private var selectedMemo: MemoData?
     @State private var isEditing = false
     
-    
     var body: some View {
         
         VStack {
@@ -24,7 +23,6 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                
                 Button {
                     showingWriteView = true
                     selectedMemo = nil
@@ -34,7 +32,6 @@ struct HomeView: View {
                         .font(.system(size: 20))
                         .foregroundColor(.orange)
                 }
-               
             }
             .padding(.horizontal, 20)
             .padding(.top, 15)
@@ -43,11 +40,11 @@ struct HomeView: View {
                 List {
                     Section(header: Text("today")
                         .font(.system(size: 23, weight: .bold))
-                        .foregroundColor(.primary) 
+                        .foregroundColor(.primary)
                             
                     ) {
                         ForEach(viewModel.memos, id: \.id) { memo in
-                            if Calendar.current.isDate(memo.date, inSameDayAs: Date()) {
+                            if Calendar.current.isDate(memo.date, inSameDayAs: Date()) && memo.memoType == .todo {
                                 memoRow(memo)
                             }
                         }
@@ -62,6 +59,7 @@ struct HomeView: View {
                             }
                         }
                     }
+                    
                     
                     Section(header: Text("2 days later ~")) {
                         ForEach(viewModel.memos, id: \.id) { memo in
@@ -80,22 +78,24 @@ struct HomeView: View {
                 Spacer ()
             }
             BannerAdView()
-                           .frame(width: 320, height: 50, alignment: .center)
-                           .cornerRadius(10)
-                           .padding(.bottom, 10)
+                .frame(width: 320, height: 50, alignment: .center)
+                .cornerRadius(10)
+                .padding(.bottom, 10)
             
         }
         .fullScreenCover(isPresented: $showingWriteView) {
             if let selectedMemo = selectedMemo {
-                WriteView(viewModel: viewModel, memo: selectedMemo)
+                WriteView(viewModel: viewModel, memoType: .todo, memo: selectedMemo)
             } else {
-                WriteView(viewModel: viewModel)
+                WriteView(viewModel: viewModel, memoType: .todo)
             }
         }
         
         .onAppear {
             viewModel.loadMemos()
             viewModel.updatePastIncompleteMemos()
+            viewModel.routineUpdate1()
+            viewModel.routineUpdate2()
             
         }
         .background(Color(UIColor.systemGray6))
@@ -106,15 +106,6 @@ struct HomeView: View {
         return viewModel.memos.contains(where: { $0.date >= today })
     }
     
-    private func memosForSpecificDay(_ date: Date) -> [MemoData] {
-        viewModel.memos.filter { Calendar.current.isDate($0.date, inSameDayAs: date) }
-    }
-    
-    private func memosFromDayOnwards(_ date: Date) -> [MemoData] {
-        let calendar = Calendar.current
-        let startDate = calendar.startOfDay(for: date)
-        return viewModel.memos.filter { $0.date >= startDate }
-    }
     
     
     private func memoRow(_ memo: MemoData) -> some View {

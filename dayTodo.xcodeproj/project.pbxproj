@@ -29,6 +29,7 @@
 		A89D6C6A2B57BF180007FF91 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89D6C692B57BF180007FF91 /* BannerAdView.swift */; };
 		A89D6C6C2B590D8F0007FF91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A89D6C6B2B590D8F0007FF91 /* GoogleService-Info.plist */; };
 		A89D6C6F2B590E620007FF91 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A89D6C6E2B590E620007FF91 /* FirebaseAnalytics */; };
+		A8BAAC3F2B74B53B005D63FB /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BAAC3E2B74B53B005D63FB /* RoutineView.swift */; };
 		A8CC93B32B3D56AF006F2135 /* dayTodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CC93B22B3D56AF006F2135 /* dayTodoApp.swift */; };
 		A8CC93B72B3D56B0006F2135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CC93B62B3D56B0006F2135 /* Assets.xcassets */; };
 		A8CC93BB2B3D56B0006F2135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CC93BA2B3D56B0006F2135 /* Preview Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		A89D6C662B57AD380007FF91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A89D6C692B57BF180007FF91 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		A89D6C6B2B590D8F0007FF91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A8BAAC3E2B74B53B005D63FB /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		A8CC93AF2B3D56AF006F2135 /* dayTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CC93B22B3D56AF006F2135 /* dayTodoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dayTodoApp.swift; sourceTree = "<group>"; };
 		A8CC93B62B3D56B0006F2135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,10 +200,11 @@
 				A89C6E382B3D608100A68E77 /* TabBarView.swift */,
 				A89C6E3E2B3D661700A68E77 /* CalendarViewModel.swift */,
 				A89C6E3A2B3D60A700A68E77 /* HomeView.swift */,
+				A8BAAC3E2B74B53B005D63FB /* RoutineView.swift */,
 				A89C6E3C2B3D613B00A68E77 /* CalendarView.swift */,
 				A89C6E432B3EDA3500A68E77 /* TodolistView2.swift */,
-				A89C6E472B40043300A68E77 /* WriteView.swift */,
 				A85F010B2B68CD5C00F2C616 /* RecordView.swift */,
+				A89C6E472B40043300A68E77 /* WriteView.swift */,
 				A89C6E492B40079D00A68E77 /* MemoData.swift */,
 				A89D6C692B57BF180007FF91 /* BannerAdView.swift */,
 				A8CC93B62B3D56B0006F2135 /* Assets.xcassets */,
@@ -430,6 +433,7 @@
 				A89C6E3D2B3D613B00A68E77 /* CalendarView.swift in Sources */,
 				A89C6E392B3D608100A68E77 /* TabBarView.swift in Sources */,
 				A89C6E3B2B3D60A700A68E77 /* HomeView.swift in Sources */,
+				A8BAAC3F2B74B53B005D63FB /* RoutineView.swift in Sources */,
 				A89C6E4A2B40079D00A68E77 /* MemoData.swift in Sources */,
 				A8CC93B32B3D56AF006F2135 /* dayTodoApp.swift in Sources */,
 			);
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = todolistExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.2;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todolist/Info.plist;
@@ -492,7 +496,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo.todolist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -514,7 +518,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = todolistExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.2;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = 2YJKG9924M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todolist/Info.plist;
@@ -526,7 +530,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo.todolist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -668,7 +672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = dayTodo/dayTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.2;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"dayTodo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2YJKG9924M;
@@ -692,7 +696,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -713,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = dayTodo/dayTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.5.2;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"dayTodo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2YJKG9924M;
@@ -737,7 +741,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dayTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

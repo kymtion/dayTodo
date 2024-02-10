@@ -12,6 +12,12 @@ struct TabBarView: View {
                     
                 }
             
+            RoutineView()
+                          .tabItem {
+                              Image(systemName: "checkmark.gobackward")
+                              Text("Routine")
+                          }
+            
             CalendarView(viewModel: CalendarViewModel())
                 .tabItem {
                     Image(systemName: "calendar")

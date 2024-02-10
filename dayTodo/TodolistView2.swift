@@ -39,31 +39,18 @@ struct TodolistView2: View {
             
             List {
                 ForEach(viewModel.memos, id: \.id) { memo in
-                    if Calendar.current.isDate(memo.date, inSameDayAs: viewModel.selectedDate) {
-                        HStack {
-                            Image(systemName: memo.isCompleted ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(memo.isCompleted ? .gray : .gray)
-                                .font(.system(size: 20))
-                            
-                            Text(memo.title)
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundColor(Color.primary)
-                                .padding(.vertical, 7)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 17))
-                                .foregroundColor(.gray)
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            
-                            if selectedMemo == nil {
-                                viewModel.loadMemos()
-                            }
-                            showingWriteView = true
-                            selectedMemo = memo
-                            
-                        }
+                    // 오늘 날짜인지 확인
+                    let isToday = Calendar.current.isDateInToday(viewModel.selectedDate)
+                    
+                    // 선택된 날짜에 해당하는 메모인지 확인
+                    let isSelectedDate = Calendar.current.isDate(memo.date, inSameDayAs: viewModel.selectedDate)
+                    
+                    // 오늘 날짜와 선택된 날짜가 동일할 때 todo 타입의 메모만 표시
+                    if isToday && isSelectedDate && memo.memoType == .todo {
+                        memoRow(memo)
+                    } else if !isToday && isSelectedDate {
+                        // 다른 날짜인 경우 모든 메모 타입 표시
+                        memoRow(memo)
                     }
                 }
                 .onMove(perform: viewModel.moveMemo)
@@ -72,13 +59,41 @@ struct TodolistView2: View {
             .environment(\.editMode, .constant(isEditing ? .active : .inactive))
             .fullScreenCover(isPresented: $showingWriteView) {
                 if let selectedMemo = selectedMemo {
-                    WriteView(viewModel: viewModel, memo: selectedMemo)
+                    WriteView(viewModel: viewModel, memoType: .todo, memo: selectedMemo)
                 } else {
-                    WriteView(viewModel: viewModel)
+                    WriteView(viewModel: viewModel, memoType: .todo)
                 }
             }
         }
     }
+    
+    private func memoRow(_ memo: MemoData) -> some View {
+        HStack {
+            Image(systemName: memo.isCompleted ? "checkmark.circle.fill" : "circle")
+                .foregroundColor(memo.isCompleted ? .gray : .gray)
+                .font(.system(size: 20))
+            
+            Text(memo.title)
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(Color.primary)
+                .padding(.vertical, 7)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .font(.system(size: 17))
+                .foregroundColor(.gray)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            
+            if selectedMemo == nil {
+                viewModel.loadMemos()
+            }
+            showingWriteView = true
+            selectedMemo = memo
+            
+        }
+    }
+    
 }
 
 

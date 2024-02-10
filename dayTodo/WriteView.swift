@@ -8,7 +8,7 @@ struct WriteView: View {
     @State private var title: String = ""
     @State private var content: String = ""
     @State private var memoDate: Date?
-    
+    @State private var memoType: MemoType // 메모 타입 상태 추가
     @State private var showingDetailOptions = false
     @State private var showingDatePicker = false
     @State private var newDate = Date()
@@ -41,8 +41,9 @@ struct WriteView: View {
         }
     }
     
-    init(viewModel: CalendarViewModel, memo: MemoData? = nil) {
+    init(viewModel: CalendarViewModel, memoType: MemoType, memo: MemoData? = nil) {
         self.viewModel = viewModel
+        self._memoType = State(initialValue: memoType) // 메모 타입 초기화
         if let memo = memo {
             // 기존 메모 데이터로 초기화
             self._title = State(initialValue: memo.title)
@@ -89,19 +90,26 @@ struct WriteView: View {
                     }
                     .padding(.horizontal, 5)
                     .actionSheet(isPresented: $showingDetailOptions) {
-                        ActionSheet(
-                            title: Text("옵션 선택"),
-                            buttons: [
-                                .default(Text("날짜 변경")) {
-                                    showingDatePicker = true
-                                },
-                                .destructive(Text("메모 삭제")) {
-                                    alertType = .deleteConfirmation
-                                },
-                                .cancel()
-                            ]
-                        )
-                    }
+                        // 메모 타입에 따라 조건적으로 ActionSheet의 buttons 배열 생성
+                           var buttons: [ActionSheet.Button] = []
+                           
+                           // 메모 타입이 루틴이 아닐 경우에만 날짜 변경 옵션 추가
+                           if memoType != .routine {
+                               buttons.append(.default(Text("날짜 변경")) {
+                                   showingDatePicker = true
+                               })
+                           }
+                           
+                           // 메모 삭제 옵션 항상 추가
+                           buttons.append(.destructive(Text("메모 삭제")) {
+                               alertType = .deleteConfirmation
+                           })
+                           
+                           // 취소 버튼 추가
+                           buttons.append(.cancel())
+
+                           return ActionSheet(title: Text("옵션 선택"), buttons: buttons)
+                       }
                     
                     Button {
                         if title.isEmpty {
@@ -112,14 +120,14 @@ struct WriteView: View {
                             
                             // 선택된 날짜가 todayStart보다 이전인 경우에만 메모 상태를 완료로 설정
                             if viewModel.selectedDate < todayStart {
-                                viewModel.saveMemo(title: title, content: content, isCompleted: true, id: memoId)
+                                viewModel.saveMemo(title: title, content: content, isCompleted: true, memoType: memoType, id: memoId)
                             } else {
                                 // todayStart보다 이전이 아니라면 기존의 완료/미완료 상태 유지
                                 if let id = memoId, let existingMemo = viewModel.memos.first(where: { $0.id == id }) {
-                                    viewModel.saveMemo(title: title, content: content, isCompleted: existingMemo.isCompleted, id: memoId)
+                                    viewModel.saveMemo(title: title, content: content, isCompleted: existingMemo.isCompleted, memoType: memoType, id: memoId)
                                 } else {
                                     // 새 메모의 경우 기본적으로 미완료 상태로 설정
-                                    viewModel.saveMemo(title: title, content: content, isCompleted: false, id: memoId)
+                                    viewModel.saveMemo(title: title, content: content, isCompleted: false, memoType: memoType, id: memoId)
                                 }
                             }
                             presentationMode.wrappedValue.dismiss()
@@ -236,7 +244,7 @@ struct WriteView: View {
 }
 
 
-
-#Preview {
-    WriteView(viewModel: CalendarViewModel())
-}
+//
+//#Preview {
+//    WriteView(viewModel: CalendarViewModel())
+//}
