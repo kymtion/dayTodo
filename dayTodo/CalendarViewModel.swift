@@ -194,6 +194,20 @@ class CalendarViewModel: ObservableObject {
         saveAllMemos() // 변경사항 저장
     }
     
+    // 선택된 메모를 Todo 타입으로 복사하여 추가하는 함수 (즉, 루틴 메모를 오늘의 투두 메모로 복사해서 생성해줌)
+       func addToDoList(memo: MemoData) {
+           // 새로운 메모 생성: 내용은 동일하지만 MemoType만 Todo로 변경
+           let newMemo = MemoData(title: memo.title, content: memo.content, date: Date(), isCompleted: false, memoType: .todo)
+           
+           // 생성된 새 메모를 memos 배열에 추가
+           memos.append(newMemo)
+           
+           // 변경사항 저장 및 위젯 업데이트
+           saveAllMemos()
+           WidgetCenter.shared.reloadAllTimelines()
+       }
+
+    
     
     
 }

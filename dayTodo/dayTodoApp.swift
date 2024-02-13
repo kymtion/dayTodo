@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private func setupRemoteConfigDefaults() {
         let remoteConfig = RemoteConfig.remoteConfig()
         let defaults: [String: NSObject] = [
-            "latest_version": "1.6" as NSObject
+            "latest_version": "1.6.1" as NSObject
         ]
         remoteConfig.setDefaults(defaults)
     }

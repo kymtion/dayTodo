@@ -8,6 +8,7 @@ struct RoutineView: View {
     @State private var showingWriteView = false
     @State private var selectedMemo: MemoData? = nil
     @State private var isEditing = false
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -69,6 +70,15 @@ struct RoutineView: View {
                                     
                                     Spacer()
                                 }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(action: {
+                                        selectedMemo = memo // 현재 스와이프한 메모를 selectedMemo에 할당
+                                        showingAlert = true
+                                    }) {
+                                        Image(systemName: "note.text")
+                                    }
+                                    .tint(.orange) // 버튼 색상 설정
+                                }
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     // 아래 조건문 코드가 없으면 처음에 메모를 클릭하면 빈 메모만 나오는 오류가 생김!! 꼭필요함
@@ -82,7 +92,17 @@ struct RoutineView: View {
                         }
                         .onMove(perform: viewModel.moveMemo)
                     }
-                    
+                }
+                .alert("<To do list>에 추가하시겠습니까?", isPresented: $showingAlert) {
+                    Button("예") {
+                        if let memoToAdd = selectedMemo {
+                            viewModel.addToDoList(memo: memoToAdd) // 선택된 메모를 기반으로 함수 호출
+                            selectedMemo = nil // 함수 호출 후 selectedMemo를 초기화
+                        }
+                    }
+                    Button("아니요", role: .cancel) {
+                        selectedMemo = nil // "아니요"를 선택했을 때 selectedMemo를 초기화
+                    }
                 }
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
             }
@@ -103,6 +123,8 @@ struct RoutineView: View {
         }
         .background(Color(UIColor.systemGray6))
     }
+    
+
     
     // 메모 타입이 루틴이고 오늘 날짜에 해당하는 메모가 없는지 검사하는 함수
     private func filteredMemosIsEmpty() -> Bool {
